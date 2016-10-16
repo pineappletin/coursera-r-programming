@@ -1,0 +1,19 @@
+ pollutantmean <- function(directory, pollutant, id = 1:332){
+  aFileList <- list.files(directory, full.names=TRUE)[id]
+  #Obtain a list of sensor files from the specdata folder
+
+  dat <- data.frame()
+  #create an empty dataframe
+  
+  for (i in 1:length(id)){
+    dat <- rbind(dat, read.csv(aFileList[i]))
+  }
+  #loop through files in subset list and
+  # *read the csv file
+  # *bind to "collector" data frame
+  
+  dat_subset <- dat[ ,pollutant]
+  mean(dat_subset, na.rm=TRUE)
+  
+}
+
